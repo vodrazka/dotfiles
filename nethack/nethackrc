@@ -1,0 +1,45 @@
+OPTIONS=color,msg_window:reversed,autopickup:false
+OPTIONS=dark_room
+OPTIONS=autodescribe
+OPTIONS=hilite_pet
+OPTIONS=DECgraphics
+OPTIONS=time
+OPTIONS=!implicit_uncursed
+
+OPTIONS=menucolors
+MENUCOLOR=" blessed "=green
+MENUCOLOR=" holy "=green
+MENUCOLOR=" cursed "=red
+MENUCOLOR=" unholy "=red
+MENUCOLOR=" cursed .* (being worn)"=orange&underline
+
+OPTIONS=statushilites
+OPTIONS=hitpointbar
+OPTIONS=hilite_status:hitpoints/100%/grey&normal
+OPTIONS=hilite_status:hitpoints/<100%/green&normal
+OPTIONS=hilite_status:hitpoints/<66%/yellow&normal
+OPTIONS=hilite_status:hitpoints/<50%/orange&normal
+OPTIONS=hilite_status:hitpoints/<33%/red&bold
+OPTIONS=hilite_status:hitpoints/<15%/red&inverse
+## Pw
+OPTIONS=hilite_status:power/100%/grey&normal
+OPTIONS=hilite_status:power/<100%/green&normal
+OPTIONS=hilite_status:power/<66%/yellow&normal
+OPTIONS=hilite_status:power/<50%/orange&normal
+OPTIONS=hilite_status:power/<33%/red&bold
+## Carry
+OPTIONS=hilite_status:cap/burdened/yellow/stressed/orange/strained/red&bold/overtaxed/red
+## Hunger
+OPTIONS=hilite_status:hunger/satiated/yellow/hungry/orange/weak/red&bold/fainting/red&inverse
+## Mental
+OPTIONS=hilite_status:condition/hallu/yellow
+OPTIONS=hilite_status:condition/conf/orange
+OPTIONS=hilite_status:condition/stun/red&bold
+## Health
+OPTIONS=hilite_status:condition/termill/red&inverse
+OPTIONS=hilite_status:condition/foodpois/red&inverse
+OPTIONS=hilite_status:condition/slime/red&inverse
+# Str, Con, Dex, Int, Wis, Cha
+OPTIONS=hilite_status:characteristics/up/green/down/red
+# gold
+OPTIONS=hilite_status: gold/up/yellow/down/brown
