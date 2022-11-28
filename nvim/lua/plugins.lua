@@ -41,6 +41,10 @@ return packer.startup(function(use)
     }
 
     use 'vodrazka/paster.nvim'
+    use 'neovim/nvim-lspconfig'
+    --git
+    use 'tpope/vim-fugitive'
+    use 'airblade/vim-gitgutter'
     -- use '~/code/github-desktop/paster.nvim'
 
     -- Automatically set up your configuration after cloning packer.nvim
