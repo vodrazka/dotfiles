@@ -39,8 +39,6 @@ return packer.startup(function(use)
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         requires = { {'nvim-lua/plenary.nvim'},{'nvim-treesitter/nvim-treesitter'} }
     }
-    use 'preservim/nerdtree'
-    -- use 'folke/tokyonight.nvim' --this breaks cmd status so redraw is done and i lose messages in the print - https://github.com/nvim-lualine/lualine.nvim/issues/733
 
     use 'vodrazka/paster.nvim'
     -- use '~/code/github-desktop/paster.nvim'
