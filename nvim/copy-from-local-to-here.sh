@@ -1,3 +1,4 @@
 #!/bin/bash
 cp -vr ~/.config/nvim/init.lua .
-cp -vr ~/.config/nvim/lua .
+mkdir lua
+cp -vr ~/.config/nvim/lua/* lua/
