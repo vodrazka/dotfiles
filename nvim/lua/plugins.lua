@@ -51,6 +51,18 @@ return packer.startup(function(use)
     use 'airblade/vim-gitgutter'
     use 'ray-x/lsp_signature.nvim'
     use 'folke/neodev.nvim'
+    use 'ThePrimeagen/harpoon'
+    use 'eandrju/cellular-automaton.nvim'
+    use {
+        "SmiteshP/nvim-navic",
+        requires = "neovim/nvim-lspconfig"
+    }
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
+    use 'folke/tokyonight.nvim'
+    use 'rust-analyzer/rust-analyzer'
     -- use '~/code/github-desktop/paster.nvim'
 
     -- Automatically set up your configuration after cloning packer.nvim

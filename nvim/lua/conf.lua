@@ -1,4 +1,8 @@
-local my_search_dirs={'.', Prefix, '~/code/github-desktop/paster.nvim'}
+local prefix = vim.fn.expand("~/.config")
+local my_search_dirs={'.', prefix..'/nvim', '~/code/github-desktop/paster.nvim'}
+P(my_search_dirs)
+
+local navic = require("nvim-navic")
 require('telescope').setup{
   pickers = {
     find_files = {
@@ -9,6 +13,7 @@ require('telescope').setup{
     }
   }
 }
+require("telescope").load_extension('harpoon')
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find files in telescope"})
@@ -33,6 +38,9 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'i', '<C-Space>', "<C-X><C-O>", { noremap = true, desc="LSP mode"})
   vim.api.nvim_buf_set_keymap(bufnr, 'i', '<Tab>', "<C-N>", { noremap = true, desc="LSP mode"})
   vim.api.nvim_buf_set_keymap(bufnr, 'i', '<S-Tab>', "<C-P>", { noremap = true, desc="LSP mode"})
+
+  vim.api.nvim_create_autocmd({"CursorHoldI"},{callback = function() vim.lsp.buf.hover() end})
+  navic.attach(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -60,6 +68,7 @@ local cfg={
 require'lspconfig'.bashls.setup(cfg)
 require'lspconfig'.dockerls.setup(cfg)
 require'lspconfig'.gopls.setup(cfg)
+require'lspconfig'.rust_analyzer.setup(cfg)
 require'neodev'.setup(cfg)
 require'lspconfig'.sumneko_lua.setup {
     on_attach = on_attach,
@@ -84,3 +93,11 @@ require'lspconfig'.sumneko_lua.setup {
         },
     },
 }
+require("lualine").setup({
+    on_attach = on_attach,
+    sections = {
+        lualine_c = {
+            { navic.get_location, cond = navic.is_available },
+        }
+    }
+})

@@ -2,14 +2,16 @@
 function P(e)
 	print(vim.inspect(e))
 end
-Prefix = vim.env.XDG_CONFIG_HOME or vim.fn.expand("~/.config")
+local prefix = vim.fn.expand("~/.config")
 
 -- basics
-vim.cmd [[ colorscheme koehler ]]
+vim.cmd [[ colorscheme tokyonight-night ]]
 vim.g.mapleader = " "
 
 -- custom shortcuts
 vim.api.nvim_create_user_command('Reload', ":source $MYVIMRC", { nargs=0 })
+-- toot
+vim.opt.backupcopy = 'yes'
 -- navigation
 vim.keymap.set('n', '<leader>w', ":Ex<CR>", {})
 vim.keymap.set('n', '<leader>t', ":tabe<CR>", {})
@@ -26,6 +28,9 @@ vim.opt.splitright = true
 vim.keymap.set('n', '<leader>%', ":vnew<CR>", {})
 vim.opt.splitbelow = true
 vim.keymap.set('n', '<leader>n', ":tabe<CR>:Telescope find_files<CR>", {})
+-- harpoon
+vim.keymap.set('n', '<leader>i', ":lua require('harpoon.mark').add_file()<CR>", {})
+vim.keymap.set('n', '<leader>o', ":Telescope harpoon marks<CR>", {})
 -- git
 vim.keymap.set('n', '<leader>gg', ":GitGutter<CR>", {})
 vim.keymap.set('n', '<leader>gr', ":GitGutterUndoHunk<CR>", {})
@@ -62,9 +67,9 @@ vim.opt.mouse = ''
 vim.opt.signcolumn='yes'
 
 -- undo
-vim.opt.undodir = { Prefix .. "/nvim/.undo//"}
+vim.opt.undodir = { prefix .. "/nvim/.undo//"}
 vim.opt.undofile = true
-vim.opt.directory = { Prefix .. "/nvim/.swp//"}
+vim.opt.directory = { prefix .. "/nvim/.swp//"}
 
 -- terminal
 vim.opt.termguicolors = true

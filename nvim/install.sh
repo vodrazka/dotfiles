@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# brew install neovim ripgrep fd croc lua-language-server
+# brew install neovim ripgrep fd croc lua-language-server rust rust-analyzer go
 # npm i -g bash-language-server dockerfile-language-server-nodejs
 # go install golang.org/x/tools/gopls@latest
 
