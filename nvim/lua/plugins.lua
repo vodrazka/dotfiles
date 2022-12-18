@@ -64,6 +64,7 @@ return packer.startup(function(use)
     use 'folke/tokyonight.nvim'
     use 'rust-analyzer/rust-analyzer'
     -- use '~/code/github-desktop/paster.nvim'
+    use 'github/copilot.vim'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

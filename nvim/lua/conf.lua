@@ -30,6 +30,11 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
+--github copilot
+vim.api.nvim_set_keymap('i', '<C-J>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
+vim.api.nvim_set_keymap('i', '<C-K>', 'copilot#Next()', {expr=true, silent=true})
+vim.api.nvim_set_keymap('i', '<C-L>', 'copilot#Previous()', {expr=true, silent=true})
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -39,7 +44,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'i', '<Tab>', "<C-N>", { noremap = true, desc="LSP mode"})
   vim.api.nvim_buf_set_keymap(bufnr, 'i', '<S-Tab>', "<C-P>", { noremap = true, desc="LSP mode"})
 
-  vim.api.nvim_create_autocmd({"CursorHoldI"},{callback = function() vim.lsp.buf.hover() end})
+  -- vim.api.nvim_create_autocmd({"CursorHoldI"},{callback = function() vim.lsp.buf.hover() end})
   navic.attach(client, bufnr)
 
   -- Mappings.

@@ -10,6 +10,7 @@ vim.g.mapleader = " "
 
 -- custom shortcuts
 vim.api.nvim_create_user_command('Reload', ":source $MYVIMRC", { nargs=0 })
+vim.api.nvim_create_user_command('W', ":w | RustRun", { nargs=0 })
 -- toot
 vim.opt.backupcopy = 'yes'
 -- navigation
@@ -56,6 +57,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0 -- inherit from tabstop
 vim.opt.softtabstop = -1 --inherit from shiftwidth
 vim.api.nvim_create_autocmd({"BufWinEnter"},{command="set formatoptions-=o"}) --do not add comments from normal mode (o,O) - bug https://github.com/nvim-lualine/lualine.nvim/issues/733
+vim.api.nvim_create_autocmd({"BufWinEnter"},{command="set formatoptions-=r"}) --do not add comments from normal mode (o,O) - bug https://github.com/nvim-lualine/lualine.nvim/issues/733
 vim.opt.listchars:append {tab='<->'}
 vim.opt.listchars:append {space='.'}
 vim.opt.listchars:append {nbsp='␣'}
