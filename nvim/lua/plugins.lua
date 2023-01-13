@@ -66,6 +66,11 @@ return packer.startup(function(use)
     -- use '~/code/github-desktop/paster.nvim'
     use 'github/copilot.vim'
 
+    -- rust
+    use 'simrat39/rust-tools.nvim'
+    use 'mfussenegger/nvim-dap'
+    use 'fatih/vim-go'
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then

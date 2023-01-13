@@ -10,7 +10,6 @@ vim.g.mapleader = " "
 
 -- custom shortcuts
 vim.api.nvim_create_user_command('Reload', ":source $MYVIMRC", { nargs=0 })
-vim.api.nvim_create_user_command('W', ":w | RustRun", { nargs=0 })
 -- toot
 vim.opt.backupcopy = 'yes'
 -- navigation

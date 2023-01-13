@@ -1,6 +1,5 @@
 local prefix = vim.fn.expand("~/.config")
 local my_search_dirs={'.', prefix..'/nvim', '~/code/github-desktop/paster.nvim'}
-P(my_search_dirs)
 
 local navic = require("nvim-navic")
 require('telescope').setup{
@@ -34,6 +33,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 vim.api.nvim_set_keymap('i', '<C-J>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
 vim.api.nvim_set_keymap('i', '<C-K>', 'copilot#Next()', {expr=true, silent=true})
 vim.api.nvim_set_keymap('i', '<C-L>', 'copilot#Previous()', {expr=true, silent=true})
+vim.api.nvim_set_keymap('i', '<C-H>', 'copilot#Suggest()', {expr=true, silent=true})
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -41,12 +41,7 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   vim.api.nvim_buf_set_keymap(bufnr, 'i', '<C-Space>', "<C-X><C-O>", { noremap = true, desc="LSP mode"})
-  vim.api.nvim_buf_set_keymap(bufnr, 'i', '<Tab>', "<C-N>", { noremap = true, desc="LSP mode"})
-  vim.api.nvim_buf_set_keymap(bufnr, 'i', '<S-Tab>', "<C-P>", { noremap = true, desc="LSP mode"})
-
-  -- vim.api.nvim_create_autocmd({"CursorHoldI"},{callback = function() vim.lsp.buf.hover() end})
   navic.attach(client, bufnr)
-
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
@@ -106,3 +101,18 @@ require("lualine").setup({
         }
     }
 })
+-- Normal setup
+local rt = require("rust-tools")
+local rt_opts = {
+    server = {
+        on_attach = function(_, bufnr)
+            on_attach(_, bufnr)
+            -- Hover actions
+            vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+            -- Code action groups
+            vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+            vim.api.nvim_create_user_command('W', ":w | RustRun", { nargs=0 })
+        end,
+    },
+}
+rt.setup(rt_opts)
