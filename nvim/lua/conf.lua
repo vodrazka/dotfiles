@@ -38,6 +38,12 @@ vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '<leader>ds', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', '<leader>df', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>dd', vim.diagnostic.setloclist, opts)
+-- git
+vim.keymap.set('n', '<leader>gg', ":GitGutter<CR>", {})
+vim.keymap.set('n', '<leader>gr', ":GitGutterUndoHunk<CR>", {})
+vim.keymap.set('n', '<leader>gv', ":GitGutterPreviewHunk<CR>", {})
+vim.keymap.set('n', '<leader>gd', ":GitGutterDiffOrig<CR>", {})
+vim.keymap.set('n', '<leader>gl', ":Git log<CR>", {})
 -- navigation
 vim.keymap.set('n', '<leader>w', ":Ex<CR>", {})
 vim.keymap.set('n', '<leader>t', ":tabe<CR>", {})
@@ -55,11 +61,6 @@ vim.opt.splitright = true
 vim.keymap.set('n', '<leader>%', ":vnew<CR>", {})
 vim.opt.splitbelow = true
 vim.keymap.set('n', '<leader>n', ":tabe<CR>:Telescope find_files<CR>", {})
--- git
-vim.keymap.set('n', '<leader>gg', ":GitGutter<CR>", {})
-vim.keymap.set('n', '<leader>gr', ":GitGutterUndoHunk<CR>", {})
-vim.keymap.set('n', '<leader>gv', ":GitGutterPreviewHunk<CR>", {})
-vim.keymap.set('n', '<leader>gd', ":GitGutterDiffOrig<CR>", {})
 -- completion
 vim.keymap.set('i', '<C-Space>', "<C-X><C-O>", { noremap = true, desc="LSP mode"})
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', {})
@@ -140,7 +141,7 @@ vim.diagnostic.config({
   virtual_text = false,
 })
 require('smart-splits').setup({})
--- Normal setup
+-- rust
 local rt = require("rust-tools")
 local rt_opts = {
     server = {
