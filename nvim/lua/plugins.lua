@@ -64,12 +64,14 @@ return packer.startup(function(use)
     use 'folke/tokyonight.nvim'
     use 'rust-analyzer/rust-analyzer'
     -- use '~/code/github-desktop/paster.nvim'
-    use 'github/copilot.vim'
+    -- use 'github/copilot.vim'
 
     -- rust
     use 'simrat39/rust-tools.nvim'
     use 'mfussenegger/nvim-dap'
     use 'fatih/vim-go'
+    use 'windwp/nvim-autopairs'
+    use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

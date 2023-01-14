@@ -1,6 +1,5 @@
 local prefix = vim.fn.expand("~/.config")
 local my_search_dirs={'.', prefix..'/nvim', '~/code/github-desktop/paster.nvim'}
-
 local navic = require("nvim-navic")
 require('telescope').setup{
   pickers = {
@@ -13,53 +12,87 @@ require('telescope').setup{
   }
 }
 require("telescope").load_extension('harpoon')
-
+require("tokyonight").setup {
+    transparent = true,
+    styles = {
+       sidebars = "transparent",
+       floats = "transparent",
+    }
+}
+vim.cmd [[ colorscheme tokyonight ]]
+require('nvim-autopairs').setup({
+  disable_filetype = { "TelescopePrompt" , "vim" },
+})
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find files in telescope"})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fs', builtin.grep_string, {})
--- lsp
--- globals
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-
+vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<leader>ds', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', '<leader>df', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<leader>dd', vim.diagnostic.setloclist, opts)
+-- navigation
+vim.keymap.set('n', '<leader>w', ":Ex<CR>", {})
+vim.keymap.set('n', '<leader>t', ":tabe<CR>", {})
+vim.keymap.set('n', '<leader>]', ":tabn<CR>", {})
+vim.keymap.set('n', '<leader>[', ":tabp<CR>", {})
+vim.keymap.set('n', '<leader>h', "<C-W>h", {})
+vim.keymap.set('n', '<leader>j', "<C-W>j", {})
+vim.keymap.set('n', '<leader>k', "<C-W>k", {})
+vim.keymap.set('n', '<leader>l', "<C-W>l", {})
+vim.keymap.set('n', '<leader>x', ":bdel<CR>", {})
+vim.keymap.set('n', '<leader>X', ":bdel!<CR>", {})
+vim.keymap.set('n', '<leader>"', ":new<CR>", {})
+vim.opt.splitright = true
+vim.keymap.set('n', '<leader>%', ":vnew<CR>", {})
+vim.opt.splitbelow = true
+vim.keymap.set('n', '<leader>n', ":tabe<CR>:Telescope find_files<CR>", {})
+-- harpoon
+vim.keymap.set('n', '<leader>i', ":lua require('harpoon.mark').add_file()<CR>", {})
+vim.keymap.set('n', '<leader>o', ":Telescope harpoon marks<CR>", {})
+-- git
+vim.keymap.set('n', '<leader>gg', ":GitGutter<CR>", {})
+vim.keymap.set('n', '<leader>gr', ":GitGutterUndoHunk<CR>", {})
+vim.keymap.set('n', '<leader>gv', ":GitGutterPreviewHunk<CR>", {})
+vim.keymap.set('n', '<leader>gd', ":GitGutterDiffOrig<CR>", {})
+-- completion
+vim.keymap.set('i', '<C-Space>', "<C-X><C-O>", { noremap = true, desc="LSP mode"})
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', {})
+vim.keymap.set('n', '<leader>T', function() vim.cmd('split | term') end, { desc = "terminal open" })
+vim.keymap.set('n', '<leader>.', ":set list!<CR>", {})
+vim.keymap.set('n', "<Leader>d.", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
+-- stolen from the web
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true })
 --github copilot
-vim.api.nvim_set_keymap('i', '<C-J>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
-vim.api.nvim_set_keymap('i', '<C-K>', 'copilot#Next()', {expr=true, silent=true})
-vim.api.nvim_set_keymap('i', '<C-L>', 'copilot#Previous()', {expr=true, silent=true})
-vim.api.nvim_set_keymap('i', '<C-H>', 'copilot#Suggest()', {expr=true, silent=true})
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
+-- vim.api.nvim_set_keymap('i', '<C-J>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
+-- vim.api.nvim_set_keymap('i', '<C-K>', 'copilot#Next()', {expr=true, silent=true})
+-- vim.api.nvim_set_keymap('i', '<C-L>', 'copilot#Previous()', {expr=true, silent=true})
+-- vim.api.nvim_set_keymap('i', '<C-H>', 'copilot#Suggest()', {expr=true, silent=true})
+-- Use an on_attach function to only map the following keys after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  vim.api.nvim_buf_set_keymap(bufnr, 'i', '<C-Space>', "<C-X><C-O>", { noremap = true, desc="LSP mode"})
   navic.attach(client, bufnr)
-  -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
+  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 local cfg={
     on_attach = on_attach,
@@ -101,17 +134,21 @@ require("lualine").setup({
         }
     }
 })
+require("lsp_lines").setup()
+vim.diagnostic.config({
+  virtual_text = false,
+})
 -- Normal setup
 local rt = require("rust-tools")
 local rt_opts = {
     server = {
         on_attach = function(_, bufnr)
             on_attach(_, bufnr)
-            -- Hover actions
-            vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-            -- Code action groups
-            vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-            vim.api.nvim_create_user_command('W', ":w | RustRun", { nargs=0 })
+                  -- Hover actions
+                  vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+                  -- Code action groups
+                  vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+                  vim.api.nvim_create_user_command('W', ":w | RustRun", { nargs=0 })
         end,
     },
 }
