@@ -72,6 +72,7 @@ return packer.startup(function(use)
     use 'fatih/vim-go'
     use 'windwp/nvim-autopairs'
     use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+    use 'mrjones2014/smart-splits.nvim'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

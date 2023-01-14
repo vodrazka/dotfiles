@@ -29,6 +29,9 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fs', builtin.grep_string, {})
+-- harpoon
+vim.keymap.set('n', '<leader>fa', ":lua require('harpoon.mark').add_file()<CR>", {})
+vim.keymap.set('n', '<leader>fh', ":Telescope harpoon marks<CR>", {})
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, opts)
@@ -44,6 +47,7 @@ vim.keymap.set('n', '<leader>h', "<C-W>h", {})
 vim.keymap.set('n', '<leader>j', "<C-W>j", {})
 vim.keymap.set('n', '<leader>k', "<C-W>k", {})
 vim.keymap.set('n', '<leader>l', "<C-W>l", {})
+vim.keymap.set('n', '<leader>r', ":lua require('smart-splits').start_resize_mode()<CR>", {})
 vim.keymap.set('n', '<leader>x', ":bdel<CR>", {})
 vim.keymap.set('n', '<leader>X', ":bdel!<CR>", {})
 vim.keymap.set('n', '<leader>"', ":new<CR>", {})
@@ -51,9 +55,6 @@ vim.opt.splitright = true
 vim.keymap.set('n', '<leader>%', ":vnew<CR>", {})
 vim.opt.splitbelow = true
 vim.keymap.set('n', '<leader>n', ":tabe<CR>:Telescope find_files<CR>", {})
--- harpoon
-vim.keymap.set('n', '<leader>i', ":lua require('harpoon.mark').add_file()<CR>", {})
-vim.keymap.set('n', '<leader>o', ":Telescope harpoon marks<CR>", {})
 -- git
 vim.keymap.set('n', '<leader>gg', ":GitGutter<CR>", {})
 vim.keymap.set('n', '<leader>gr', ":GitGutterUndoHunk<CR>", {})
@@ -90,7 +91,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
   vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
@@ -138,6 +139,7 @@ require("lsp_lines").setup()
 vim.diagnostic.config({
   virtual_text = false,
 })
+require('smart-splits').setup({})
 -- Normal setup
 local rt = require("rust-tools")
 local rt_opts = {
