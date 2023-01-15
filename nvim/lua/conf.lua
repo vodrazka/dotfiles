@@ -62,9 +62,9 @@ vim.keymap.set('n', '<leader>l', "<C-W>l", {})
 vim.keymap.set('n', '<leader>r', ":lua require('smart-splits').start_resize_mode()<CR>", {})
 vim.keymap.set('n', '<leader>x', ":bdel<CR>", {})
 vim.keymap.set('n', '<leader>X', ":bdel!<CR>", {})
-vim.keymap.set('n', '<leader>"', ":new<CR>", {})
+vim.keymap.set('n', '<leader>-', ":new<CR>", {})
 vim.opt.splitright = true
-vim.keymap.set('n', '<leader>%', ":vnew<CR>", {})
+vim.keymap.set('n', '<leader>|', ":vnew<CR>", {})
 vim.opt.splitbelow = true
 vim.keymap.set('n', '<leader>n', ":tabe<CR>:Telescope find_files<CR>", {})
 -- completion
@@ -73,6 +73,8 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', {})
 vim.keymap.set('n', '<leader>T', function() vim.cmd('split | term') end, { desc = "terminal open" })
 vim.keymap.set('n', '<leader>.', ":set list!<CR>", {})
 vim.keymap.set('n', "<Leader>d.", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
+vim.keymap.set('n', "<Leader>d,", function() vim.diagnostic.config({ virtual_text = false, }) end, {})
+vim.keymap.set('n', "<Leader>d,.", function() vim.diagnostic.config({ virtual_text = true }) end, {})
 -- stolen from the web
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true })
