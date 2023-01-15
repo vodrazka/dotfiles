@@ -73,8 +73,12 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', {})
 vim.keymap.set('n', '<leader>T', function() vim.cmd('split | term') end, { desc = "terminal open" })
 vim.keymap.set('n', '<leader>.', ":set list!<CR>", {})
 vim.keymap.set('n', "<Leader>d.", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
-vim.keymap.set('n', "<Leader>d,", function() vim.diagnostic.config({ virtual_text = false, }) end, {})
-vim.keymap.set('n', "<Leader>d,.", function() vim.diagnostic.config({ virtual_text = true }) end, {})
+local diagnostics_active = true
+local toggle_diagnostics = function()
+    diagnostics_active = not diagnostics_active
+    vim.diagnostic.config({ virtual_text = diagnostics_active, })
+end
+vim.keymap.set('n', "<Leader>d,", toggle_diagnostics, {desc = "Toggle normal diagnostics"})
 -- stolen from the web
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true })
@@ -107,6 +111,7 @@ end, bufopts)
     vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
     vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
     vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
@@ -151,9 +156,7 @@ require("lualine").setup({
     }
 })
 require("lsp_lines").setup()
-vim.diagnostic.config({
-    virtual_text = false,
-})
+require("lsp_lines").toggle() --to be off be default
 require('smart-splits').setup({})
 -- leap
 local leap = require('leap')
