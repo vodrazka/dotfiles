@@ -4,6 +4,7 @@ local ensure_packer = function()
     if fn.empty(fn.glob(install_path)) > 0 then
         fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
         vim.cmd [[packadd packer.nvim]]
+        print('packer downloaded')
         return true
     end
     return false
@@ -21,7 +22,6 @@ augroup end
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
-    print('packer not found, config not loaded')
     return
 end
 

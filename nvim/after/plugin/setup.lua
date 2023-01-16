@@ -1,3 +1,7 @@
+local status, lfs = pcall(require, "telescope")
+if(not status) then
+    return
+end
 local prefix = vim.fn.expand("~/.config")
 local my_search_dirs = { '.', prefix .. '/nvim', '~/code/github-desktop/paster.nvim' }
 local navic = require("nvim-navic")
