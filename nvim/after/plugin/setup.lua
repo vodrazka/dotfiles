@@ -65,7 +65,7 @@ require 'lspconfig'.dockerls.setup(cfg)
 require 'lspconfig'.gopls.setup(cfg)
 require 'lspconfig'.rust_analyzer.setup(cfg)
 require 'neodev'.setup(cfg)
-require 'lspconfig'.sumneko_lua.setup {
+require 'lspconfig'.lua_ls.setup {
     on_attach = on_attach,
     settings = {
         Lua = {
