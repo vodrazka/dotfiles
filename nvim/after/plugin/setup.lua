@@ -24,7 +24,7 @@ require("tokyonight").setup {
         floats = "transparent",
     }
 }
-vim.cmd [[ colorscheme tokyonight ]]
+vim.cmd [[ colorscheme koehler ]]
 require('nvim-autopairs').setup({
     disable_filetype = { "TelescopePrompt", "vim" },
 })
