@@ -63,6 +63,7 @@ return packer.startup(function(use)
     use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 
     use 'folke/neodev.nvim'
+
     use 'github/copilot.vim'
 
     --use 'eandrju/cellular-automaton.nvim'

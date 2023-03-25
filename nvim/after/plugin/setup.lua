@@ -20,6 +20,7 @@ require('telescope').setup {
 }
 require("telescope").load_extension('harpoon')
 vim.cmd [[ colorscheme koehler ]]
+vim.cmd[[hi Normal guibg=NONE ctermbg=NONE]]
 require('nvim-autopairs').setup({
     disable_filetype = { "TelescopePrompt", "vim" },
 })
