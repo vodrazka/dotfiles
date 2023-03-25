@@ -35,49 +35,49 @@ packer.init({
 }
 )
 
--- Install your plugins here
 return packer.startup(function(use)
-    -- My plugins here
     use 'wbthomason/packer.nvim' -- Have packer manage itself
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+    }
     use { -- brew install ripgrep fd
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-treesitter/nvim-treesitter' } }
     }
 
     use 'vodrazka/paster.nvim'
-    use 'neovim/nvim-lspconfig'
-    --git
     use 'tpope/vim-fugitive'
     use 'airblade/vim-gitgutter'
     use 'ray-x/lsp_signature.nvim'
-    use 'folke/neodev.nvim'
     use 'ThePrimeagen/harpoon'
-    use 'eandrju/cellular-automaton.nvim'
-    use {
-        "SmiteshP/nvim-navic",
-        requires = "neovim/nvim-lspconfig"
-    }
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
-    use 'folke/tokyonight.nvim'
-    use 'rust-analyzer/rust-analyzer'
-    -- use '~/code/github-desktop/paster.nvim'
-    -- use 'github/copilot.vim'
-
-    -- rust
-    use 'simrat39/rust-tools.nvim'
-    use 'mfussenegger/nvim-dap'
-    use 'fatih/vim-go'
     use 'windwp/nvim-autopairs'
     use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
     use 'mrjones2014/smart-splits.nvim'
     use 'ggandor/leap.nvim'
     use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
+    use 'folke/neodev.nvim'
+    use 'github/copilot.vim'
+
+    --use 'eandrju/cellular-automaton.nvim'
+    --use {
+    --    "SmiteshP/nvim-navic",
+    --    requires = "neovim/nvim-lspconfig"
+    --}
+    --use 'rust-analyzer/rust-analyzer'
+    -- use '~/code/github-desktop/paster.nvim'
+
+    -- rust
+    --use 'simrat39/rust-tools.nvim'
+    --use 'mfussenegger/nvim-dap'
+    --use 'fatih/vim-go'
+
     if packer_bootstrap then
         require('packer').sync()
     end

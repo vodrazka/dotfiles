@@ -3,6 +3,12 @@ if(not status) then
     return
 end
 local builtin = require('telescope.builtin')
+
+--github copilot
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.api.nvim_set_keymap('i', '<C-j>', 'copilot#Next()', {expr=true, silent=true})
+-- telescope
 vim.keymap.set('n', '<leader>/', ':map <lt>leader>', { desc = "help menu" })
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "find files" })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "find grep" })
@@ -47,7 +53,6 @@ vim.keymap.set('n', '<leader>|', ":vnew<CR>", { desc = "new split right" })
 vim.opt.splitbelow = true
 vim.keymap.set('n', '<leader>n', ":tabe<CR>:Telescope find_files<CR>", { desc = "new tab and search" })
 -- completion
-vim.keymap.set('i', '<C-Space>', "<C-X><C-O>", { noremap = true, desc = "LSP mode" })
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', {})
 vim.keymap.set('n', '<leader>T', function() vim.cmd('split | term') end, { desc = "terminal open" })
 vim.keymap.set('n', '<leader>.', ":set list!<CR>", { desc = "toogle whitespaces"})
@@ -61,9 +66,3 @@ vim.keymap.set('n', "<Leader>d,", toggle_diagnostics, {desc = "Toggle normal dia
 -- stolen from the web
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true })
-
---github copilot
--- vim.api.nvim_set_keymap('i', '<C-J>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
--- vim.api.nvim_set_keymap('i', '<C-K>', 'copilot#Next()', {expr=true, silent=true})
--- vim.api.nvim_set_keymap('i', '<C-L>', 'copilot#Previous()', {expr=true, silent=true})
--- vim.api.nvim_set_keymap('i', '<C-H>', 'copilot#Suggest()', {expr=true, silent=true})
