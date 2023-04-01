@@ -43,9 +43,11 @@ return packer.startup(function(use)
         "neovim/nvim-lspconfig",
     }
     use { -- brew install ripgrep fd
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        'nvim-telescope/telescope.nvim',
         requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-treesitter/nvim-treesitter' } }
     }
+    --use {'axkirillov/easypick.nvim', requires = 'nvim-telescope/telescope.nvim'}
+    use 'mattn/webapi-vim'
 
     use 'vodrazka/paster.nvim'
     use 'tpope/vim-fugitive'

@@ -8,7 +8,21 @@ local my_search_dirs = { '.', prefix .. '/nvim', '~/code/github-desktop/paster.n
 
 require("mason").setup()
 require('smart-splits').setup({})
+local actions = require "telescope.actions"
 require('telescope').setup {
+    defaults = {
+        mappings = {
+            i = {
+                -- map actions.which_key to <C-h> (default: <C-/>)
+                -- actions.which_key shows the mappings for your picker,
+                ["<C-j>"] = actions.send_to_qflist + actions.open_qflist,
+                ["<C-S-j>"] = actions.send_selected_to_qflist + actions.open_qflist,
+            },
+            n = {
+            },
+        }
+
+    },
     pickers = {
         find_files = {
             search_dirs = my_search_dirs
@@ -20,7 +34,7 @@ require('telescope').setup {
 }
 require("telescope").load_extension('harpoon')
 vim.cmd [[ colorscheme koehler ]]
-vim.cmd[[hi Normal guibg=NONE ctermbg=NONE]]
+vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
 require('nvim-autopairs').setup({
     disable_filetype = { "TelescopePrompt", "vim" },
 })
@@ -129,10 +143,17 @@ end
 local cfg = {
     on_attach = on_attach,
 }
+local cfg_rust = {
+    on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        vim.keymap.set('n', '<leader>ww', ":RustRun<CR>", { noremap = true, desc = "rust run" })
+        vim.keymap.set('n', '<leader>wp', ":RustPlay<CR>", { noremap = true, desc = "rust run" })
+    end
+}
 require 'lspconfig'.bashls.setup(cfg)
 require 'lspconfig'.dockerls.setup(cfg)
 --require 'lspconfig'.gopls.setup(cfg)
-require 'lspconfig'.rust_analyzer.setup(cfg)
+require 'lspconfig'.rust_analyzer.setup(cfg_rust)
 require 'neodev'.setup(cfg)
 require 'lspconfig'.lua_ls.setup {
     on_attach = on_attach,

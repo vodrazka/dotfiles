@@ -26,9 +26,13 @@ vim.keymap.set('n', '<leader>dd', vim.diagnostic.setloclist, { noremap = true, s
 -- git
 vim.keymap.set('n', '<leader>gr', ":GitGutter<CR>", {desc = "refresh"})
 vim.keymap.set('n', '<leader>gu', ":GitGutterUndoHunk<CR>", { desc = "undo" })
-vim.keymap.set('n', '<leader>gp', ":GitGutterPreviewHunk<CR>", { desc = "preview" })
-vim.keymap.set('n', '<leader>gd', ":GitGutterDiffOrig<CR>", { desc = "full diff" })
+vim.keymap.set('n', '<leader>gg', ":GitGutterPreviewHunk<CR>", { desc = "preview" })
+vim.keymap.set('n', '<leader>gf', ":GitGutterDiffOrig<CR>", { desc = "full diff" })
 vim.keymap.set('n', '<leader>gl', ":Git log<CR>", { desc = "log" })
+vim.keymap.set('n', '<leader>gn', ":GitGutterNextHunk<CR>", { desc = "next hunk" })
+vim.keymap.set('n', '<leader>gp', ":GitGutterPrevHunk<CR>", { desc = "previous hunk" })
+vim.keymap.set('n', '<leader>ga', ":GitGutterStageHunk<CR>", { desc = "stage" })
+vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = "find git status" })
 -- leap
 vim.keymap.set('n', '<leader>ss', "<Plug>(leap-forward-to)", { desc = "search forward" })
 vim.keymap.set('n', '<leader>sa', "<Plug>(leap-backward-to)", { desc = "search backwards" })
