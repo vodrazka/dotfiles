@@ -25,12 +25,13 @@ set ideastatusicon=gray
 set idearefactormode=keep
 
 """ Mappings --------------------------------
+""" to search for mappings type :actionlist X, where X is the action you want to find. Example: :actionlist FindInPath
 """ telescope
 map <leader>ff <Action>(SearchEverywhere)
 map <leader>fg <Action>(FindInPath)
 map <leader>fb <Action>(RecentFiles)
 map <leader>fv <Action>(VimFindActionIdAction)
-map <leader>fs <Action>(FindMenuGroup)
+map <leader>fs <Action>(GotoSymbol)
 map <leader>fa <Action>(GotoAction)
 map <leader>fd <Action>(GotoFile)
 map <leader>fc <Action>(GotoClass)
@@ -53,6 +54,12 @@ map <leader>gh <Action>(Vcs.ShowTabbedFileHistory)
 """ code
 map <leader>ww <Action>(Run)
 map <leader>wd <Action>(Debug)
+map <leader>wb <Action>(ToggleLineBreakpoint)
+map <leader>wq <Action>(ToggleTemporaryLineBreakpoint)
+map <leader>wc <Action>(EditBreakpoint)
+map <leader>wr <Action>(Debugger.RestoreBreakpoint)
+map <leader>wl <Action>(ViewBreakpoints)
+map <leader>wt <Action>(ToggleBreakpointEnabled)
 map <leader>cf <Action>(ReformatCode)
 map <leader>cr <Action>(RenameElement)
 """ bookmarks
@@ -64,6 +71,7 @@ map <leader>bn <Action>(GotoNextBookmark)
 map <leader>bp <Action>(GotoPreviousBookmark)
 """ navigation
 map <leader>z <Action>(ToggleDistractionFreeMode)
+map <leader>p <Action>(TogglePresentationMode)
 map <leader>h <C-W>h
 map <leader>j <C-W>j
 map <leader>k <C-W>k
