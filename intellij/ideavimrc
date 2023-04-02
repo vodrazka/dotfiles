@@ -1,0 +1,62 @@
+""" Map leader to space ---------------------
+let mapleader=" "
+
+""" Plugins  --------------------------------
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set easymotion
+set textobj-entire
+set ReplaceWithRegister
+
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+
+""" Common settings -------------------------
+set showmode
+set so=5
+set incsearch
+set nu
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+""" Mappings --------------------------------
+""" telescope
+map <leader>ff <Action>(SearchEverywhere)
+map <leader>fg <Action>(FindInPath)
+map <leader>fb <Action>(RecentFiles)
+map <leader>fv <Action>(VimFindActionIdAction)
+map <leader>fs <Action>(FindMenuGroup)
+map <leader>fa <Action>(GotoAction)
+map <leader>fd <Action>(GotoFile)
+map <leader>fc <Action>(GotoClass)
+""" diagnostic
+map <leader>dn <Action>(GotoNextError)
+map <leader>dp <Action>(GotoPreviousError)
+map <leader>dd <Action>(ShowErrorDescription)
+""" git
+map <leader>gg <Action>(VcsShowCurrentChangeMarker)
+map <leader>gu <Action>(Vcs.RollbackChangedLines)
+map <leader>gc <Action>(CompareActions)
+map <leader>gf <Action>(Compare.SameVersion)
+map <leader>gn <Action>(VcsShowNextChangeMarker)
+map <leader>gp <Action>(VcsShowPrevChangeMarker)
+map <leader>gs <Action>(Vcs.Show.Local.Changes)
+map <leader>gb <Action>(Git.CompareWithBranch)
+map <leader>gl <Action>(Vcs.Show.Log)
+map <leader>ga <Action>(Annotate)
+map <leader>gh <Action>(Vcs.ShowTabbedFileHistory)
+""" code
+map <leader>ww <Action>(Run)
+map <leader>cf <Action>(ReformatCode)
+map <leader>cr <Action>(RenameElement)
+""" navigation
+map <leader>z <Action>(ToggleDistractionFreeMode)
+map <leader>h <C-W>h
+map <leader>j <C-W>j
+map <leader>k <C-W>k
+map <leader>l <C-W>l
