@@ -20,8 +20,8 @@ vim.keymap.set('n', '<leader>fs', builtin.grep_string, { desc = "find string" })
 --vim.keymap.set('n', '<leader>fh', ":Telescope harpoon marks<CR>", {})
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, { noremap = true, silent = true, desc = "preview diag" })
-vim.keymap.set('n', '<leader>ds', vim.diagnostic.goto_prev, { noremap = true, silent = true, desc = "prev diag" })
-vim.keymap.set('n', '<leader>df', vim.diagnostic.goto_next, { noremap = true, silent = true, desc = "next diag" })
+vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, { noremap = true, silent = true, desc = "prev diag" })
+vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, { noremap = true, silent = true, desc = "next diag" })
 vim.keymap.set('n', '<leader>dd', vim.diagnostic.setloclist, { noremap = true, silent = true, desc = "open full diag" })
 -- git
 vim.keymap.set('n', '<leader>gr', ":GitGutter<CR>", {desc = "refresh"})

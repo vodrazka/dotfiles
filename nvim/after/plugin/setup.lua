@@ -137,8 +137,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
     vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+    vim.keymap.set('n', '<leader>cf', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 local cfg = {
     on_attach = on_attach,
@@ -152,6 +151,7 @@ local cfg_rust = {
 }
 require 'lspconfig'.bashls.setup(cfg)
 require 'lspconfig'.dockerls.setup(cfg)
+require 'lspconfig'.jdtls.setup(cfg)
 --require 'lspconfig'.gopls.setup(cfg)
 require 'lspconfig'.rust_analyzer.setup(cfg_rust)
 require 'neodev'.setup(cfg)
