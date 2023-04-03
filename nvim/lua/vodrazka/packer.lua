@@ -16,7 +16,7 @@ local packer_bootstrap = ensure_packer()
 vim.cmd([[
 augroup packer_user_config
 autocmd!
-autocmd BufWritePost plugins.lua source <afile> | PackerSync
+autocmd BufWritePost packer.lua source <afile> | PackerSync
 augroup end
 ]])
 -- Use a protected call so we don't error out on first use
@@ -37,9 +37,10 @@ packer.init({
 
 return packer.startup(function(use)
     use 'wbthomason/packer.nvim'
-    use { -- brew install ripgrep fd
+    use { 
         'nvim-telescope/telescope.nvim',
         requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-treesitter/nvim-treesitter' } }
+        -- brew install ripgrep fd
     }
     use 'vodrazka/paster.nvim'
     use 'tpope/vim-fugitive'
