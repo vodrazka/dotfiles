@@ -36,50 +36,16 @@ packer.init({
 )
 
 return packer.startup(function(use)
-    use 'wbthomason/packer.nvim' -- Have packer manage itself
-    use {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig",
-    }
+    use 'wbthomason/packer.nvim'
     use { -- brew install ripgrep fd
         'nvim-telescope/telescope.nvim',
         requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-treesitter/nvim-treesitter' } }
     }
-    --use {'axkirillov/easypick.nvim', requires = 'nvim-telescope/telescope.nvim'}
-    use 'mattn/webapi-vim'
-
     use 'vodrazka/paster.nvim'
     use 'tpope/vim-fugitive'
     use 'airblade/vim-gitgutter'
-    use 'ray-x/lsp_signature.nvim'
-    use 'ThePrimeagen/harpoon'
-    use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-    }
-    use 'windwp/nvim-autopairs'
-    use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
     use 'mrjones2014/smart-splits.nvim'
-    use 'ggandor/leap.nvim'
-    use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
-
-    use 'folke/neodev.nvim'
-
     use 'github/copilot.vim'
-
-    --use 'eandrju/cellular-automaton.nvim'
-    --use {
-    --    "SmiteshP/nvim-navic",
-    --    requires = "neovim/nvim-lspconfig"
-    --}
-    --use 'rust-analyzer/rust-analyzer'
-    -- use '~/code/github-desktop/paster.nvim'
-
-    -- rust
-    --use 'simrat39/rust-tools.nvim'
-    --use 'mfussenegger/nvim-dap'
-    --use 'fatih/vim-go'
 
     if packer_bootstrap then
         require('packer').sync()
