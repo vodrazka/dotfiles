@@ -10,7 +10,7 @@ vim.opt.backupcopy = 'yes'
 opt.completeopt:remove "preview"
 opt.wrap = false
 opt.expandtab = true
-opt.tabstop = 4
+opt.tabstop = 2
 opt.shiftwidth = 0 -- inherit from tabstop
 opt.softtabstop = -1 --inherit from shiftwidth
 opt.listchars:append { tab = '<->' }
