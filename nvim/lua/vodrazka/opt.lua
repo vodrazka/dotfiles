@@ -1,7 +1,6 @@
 local prefix = vim.fn.expand("~/.config")
 local opt = vim.opt
 -- basics
-vim.g.mapleader = " "
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, { command = "set formatoptions-=o" }) --do not add comments from normal mode (o,O) - bug https://github.com/nvim-lualine/lualine.nvim/issues/733
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, { command = "set formatoptions-=r" }) --do not add comments from normal mode (o,O) - bug https://github.com/nvim-lualine/lualine.nvim/issues/733
 -- toot
