@@ -3,7 +3,7 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
-    "tsakirist/telescope-lazy.nvim"
+    "tsakirist/telescope-lazy.nvim",
   },
   config = function()
     require("telescope").load_extension "lazy"
