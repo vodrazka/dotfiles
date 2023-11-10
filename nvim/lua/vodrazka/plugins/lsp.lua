@@ -5,6 +5,7 @@ return {
     "williamboman/mason.nvim",
     "ray-x/go.nvim",
     "ray-x/guihua.lua",
+    'ray-x/navigator.lua',
     "mfussenegger/nvim-dap",
     "rcarriga/nvim-dap-ui",
     "theHamsta/nvim-dap-virtual-text",
@@ -21,12 +22,17 @@ return {
     require("go").setup({
       lsp_cfg = true,
       lsp_on_attach = function(client, bufnr)
+        require("navigator").setup()
         vim.keymap.set('n', '<leader>dc', function()
           vim.cmd "GoDebug"
         end, { buffer = bufnr, desc = "GoDebug" })
         vim.keymap.set('n', '<leader>lf', function()
           require("go.format").goimport()
         end, { buffer = bufnr, desc = "GoDebug" })
+        vim.keymap.set('n', '<leader>lh', function()
+          vim.cmd "GoGenReturn"
+        end, { buffer = bufnr, desc = "GoGenReturn" })
+        vim.keymap.set('n', '<leader>l/', ":GoCheat ", { buffer = bufnr, desc = "GoGenReturn" })
       end,
     })
 
