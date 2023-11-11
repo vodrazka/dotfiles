@@ -23,6 +23,7 @@ return {
       lsp_cfg = true,
       lsp_on_attach = function(client, bufnr)
         require("navigator").setup()
+        require "lsp_signature".setup()
         vim.keymap.set('n', '<leader>dc', function()
           vim.cmd "GoDebug"
         end, { buffer = bufnr, desc = "GoDebug" })
