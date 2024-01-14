@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
 #brew install neovim ripgrep fd croc
 
-mkdir ~/.config/nvim/
-cp -vr init.lua ~/.config/nvim/init.lua
-cp -vr lua ~/.config/nvim/
+mkdir -p ~/.config/nvim/
+\cp -vr init.lua ~/.config/nvim/init.lua
+\cp -vr lua ~/.config/nvim/
