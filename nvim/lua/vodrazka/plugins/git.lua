@@ -41,9 +41,6 @@ return {
         map('n', '<leader>gdd', gs.diffthis, { desc = "Diff this" })
         map('n', '<leader>gdf', function() gs.diffthis('~') end, { desc = "Diff file" })
         map('n', '<leader>gdt', gs.toggle_deleted, { desc = "Toggle deleted" })
-        require("which-key").register({
-          g = "Git",
-        }, { prefix = "<leader>" })
       end
     }
   end,
