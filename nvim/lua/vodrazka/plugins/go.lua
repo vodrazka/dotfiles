@@ -27,6 +27,7 @@ return {
           -- overrides
           vim.keymap.set('n', '<leader>l', ":GoFmt<CR>", { desc = "[Go] Format file"})
           vim.keymap.set('n', '<leader>r', ":w | GoRun<CR>", { desc = "[Go] Run"})
+          vim.keymap.set('n', '<leader>rr', ":w | GoRun . ", { desc = "[Go] Run with args"})
         end
     })
     require("go.format").goimports()  -- goimports + gofmt
