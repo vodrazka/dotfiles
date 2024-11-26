@@ -28,7 +28,7 @@ return {
           vim.keymap.set('n', '<leader>l', ":GoFmt<CR>", { desc = "[Go] Format file"})
           vim.keymap.set('n', '<leader>r', ":w | !go run .<CR>", { desc = "[Go] Run"})
           vim.keymap.set('n', '<leader>rr', ":w | !go run . ", { desc = "[Go] Run with args"})
-          vim.keymap.set('n', '<leader>cl', "ologrus.Info()<ESC>ha", { desc = "[Go] Insert logger below"})
+          vim.keymap.set('n', '<leader>ct', "gg:GoCodeLenAct<CR>", { desc = "[Go] Toggle GoCodeLenAct"})
         end
     })
     require("go.format").goimports()  -- goimports + gofmt
