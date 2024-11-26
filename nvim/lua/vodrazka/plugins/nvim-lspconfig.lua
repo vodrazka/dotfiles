@@ -9,6 +9,8 @@ return {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-buffer",
     "hrsh7th/vim-vsnip",
+    "L3MON4D3/LuaSnip",
+    "saadparwaiz1/cmp_luasnip",
   },
   config = function()
     require("lspconfig")
@@ -41,6 +43,7 @@ return {
       snippet = {
         expand = function(args)
           vim.fn["vsnip#anonymous"](args.body)
+          require'luasnip'.lsp_expand(args.body)
         end,
       },
       mapping = {
@@ -67,6 +70,7 @@ return {
         { name = 'buffer', keyword_length = 2 },        -- source current buffer
         { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip 
         { name = 'calc'},                               -- source for math calculation
+        { name = 'luasnip'},
       },
       window = {
         completion = cmp.config.window.bordered(),
