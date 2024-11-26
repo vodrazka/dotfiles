@@ -42,7 +42,7 @@ return {
       -- Enable LSP snippets
       snippet = {
         expand = function(args)
-          vim.fn["vsnip#anonymous"](args.body)
+          -- vim.fn["vsnip#anonymous"](args.body)
           require'luasnip'.lsp_expand(args.body)
         end,
       },
@@ -61,16 +61,17 @@ return {
           select = true,
         })
       },
+      preselect = cmp.PreselectMode.None,
       -- Installed sources:
       sources = {
         { name = 'path' },                              -- file paths
-        { name = 'nvim_lsp', keyword_length = 3 },      -- from language server
+        { name = 'luasnip', priority = 8},
+        { name = 'nvim_lsp', keyword_length = 3, priority = 5 },      -- from language server
         { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
         { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
         { name = 'buffer', keyword_length = 2 },        -- source current buffer
-        { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip 
+        -- { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip 
         { name = 'calc'},                               -- source for math calculation
-        { name = 'luasnip'},
       },
       window = {
         completion = cmp.config.window.bordered(),
@@ -82,6 +83,7 @@ return {
           local menu_icon ={
             nvim_lsp = 'λ',
             vsnip = '⋗',
+            luasnip = '✂︎',
             buffer = 'Ω',
             path = 'P',
           }

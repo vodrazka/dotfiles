@@ -55,6 +55,22 @@ return {
       }))
     })
 
+    ls.add_snippets('go', {
+      s("logi", {
+        c(1, {
+          sn(nil,{t("logrus.Info("),i(1),t(")")}),
+          sn(nil,{t("logrus.Error("),i(1),t(")")}),
+          sn(nil,{t("logrus.Debug("),i(1),t(")")}),
+          sn(nil,{t("logrus.Warn("),i(1),t(")")})
+        }),
+      }),
+      s("choi", c(1, {
+        t("Ugh boring, a text node"),
+        i(nil, "At least I can edit something now..."),
+        f(function(args) return "Still only counts as text!!" end, {})
+      }))
+    })
+
     -- vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
     vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
     vim.keymap.set({"i", "s"}, "<C-H>", function() ls.jump(-1) end, {silent = true})
