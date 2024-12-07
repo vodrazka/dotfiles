@@ -64,11 +64,11 @@ return {
           sn(nil,{t("logrus.Warn("),i(1),t(")")})
         }),
       }),
-      s("choi", c(1, {
-        t("Ugh boring, a text node"),
-        i(nil, "At least I can edit something now..."),
-        f(function(args) return "Still only counts as text!!" end, {})
-      }))
+      postfix({trig='""',match_pattern = "%(%)$"}, {
+        f(function(_, parent)
+          return '"' .. parent.snippet.env.POSTFIX_MATCH .. '"'
+        end, {}),
+      })
     })
 
     -- vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
