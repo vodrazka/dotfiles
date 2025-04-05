@@ -36,3 +36,6 @@ Global gitconfig file
 [commit]
   gpgsign = true
 ```
+## neovim troubleshooting
+### install lua treesitter
+`TSInstall lua`
