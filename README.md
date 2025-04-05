@@ -30,7 +30,7 @@ Global gitconfig file
 [user]
   name = Thomas Vodrazka
   email = 9295830+vodrazka@users.noreply.github.com
-  signingkey = `create new key, add to github twice, auth and signing`
+  signingkey = path to public key, use forwarding
 [gpg]
   format = ssh
 [commit]
