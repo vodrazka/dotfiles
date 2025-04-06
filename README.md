@@ -21,6 +21,28 @@ cd /root/code
 git clone git@github.com:vodrazka/rust-intro.git
 git clone git@github.com:vodrazka/go_http.git
 ```
+
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+```
+apt install -y fzf
+cat <<\EOF >> /root/.zshrc
+alias vim=nvim
+export EDITOR=vim
+EOF
+vim ~/.zshrc
+```
+
+```
+wd rust golang fzf
+```
+
+```
+. ~/.zshrc
+```
+
 # manual
 ## install neovim
 ```
