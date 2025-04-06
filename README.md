@@ -1,4 +1,27 @@
 # ubuntu 24.10
+# automation
+```
+cd /root/
+git clone git@github.com:vodrazka/dotfiles.git
+cd dotfiles/
+chmod +x prep-dev-on-ubuntu.sh
+./prep-dev-on-ubuntu.sh
+source /root/.bashrc
+vim
+```
+
+```
+:MasonInstall gopls
+:TSInstall lua markdown
+```
+
+```
+mkdir /root/code
+cd /root/code
+git clone git@github.com:vodrazka/rust-intro.git
+git clone git@github.com:vodrazka/go_http.git
+```
+# manual
 ## install neovim
 ```
 sudo add-apt-repository ppa:neovim-ppa/unstable
@@ -38,4 +61,5 @@ Global gitconfig file
 ```
 ## neovim troubleshooting
 ### install lua treesitter
-`TSInstall lua`
+`TSInstall lua markdown`
+`MasonInstall gopls`
