@@ -5,7 +5,6 @@ return {
     vim.o.timeout = true
     vim.o.timeoutlen = 300
     require("which-key").add({
-      {"<leader>c", group="Code"},
       {"<leader>d", group="Debug"},
       {"<leader>f", group="Find"},
       {"<leader>g", group="Git"},

@@ -2,8 +2,8 @@ local opt = vim.opt
 -- basics
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, { command = "set formatoptions-=o" }) --do not add comments from normal mode (o,O) - bug https://github.com/nvim-lualine/lualine.nvim/issues/733
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, { command = "set formatoptions-=r" }) --do not add comments from normal mode (o,O) - bug https://github.com/nvim-lualine/lualine.nvim/issues/733
--- toot
-vim.opt.backupcopy = 'yes'
+-- copy instead of rename on write, so file watchers (webpack, cargo-watch, etc.) keep the same inode
+vim.opt.backupcopy = "yes"
 -- intendation
 opt.completeopt:remove "preview"
 opt.wrap = false
@@ -11,15 +11,15 @@ opt.expandtab = true
 opt.tabstop = 2
 opt.shiftwidth = 0 -- inherit from tabstop
 opt.softtabstop = -1 --inherit from shiftwidth
-opt.listchars:append { tab = '<->' }
-opt.listchars:append { space = '.' }
-opt.listchars:append { nbsp = '␣' }
-opt.listchars:append { trail = '-' }
-opt.listchars:append { extends = '>' }
-opt.listchars:append { precedes = '<' }
-opt.listchars:append { eol = '$' }
-opt.mouse = ''
-opt.signcolumn = 'yes'
+opt.listchars:append { tab = "<->" }
+opt.listchars:append { space = "." }
+opt.listchars:append { nbsp = "␣" }
+opt.listchars:append { trail = "-" }
+opt.listchars:append { extends = ">" }
+opt.listchars:append { precedes = "<" }
+opt.listchars:append { eol = "$" }
+opt.mouse = ""
+opt.signcolumn = "yes"
 -- undo
 opt.undodir = { vim.fn.stdpath("state") .. "/undo//" }
 opt.undofile = true
