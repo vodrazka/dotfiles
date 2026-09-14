@@ -59,6 +59,10 @@ return {
         desc = "Go LSP server used by go.nvim (auto-installed by :GoInstallBinaries once `go` is present)",
       },
       {
+        bin = "staticcheck",
+        desc = "Go <leader>rE explain error (install via `go install honnef.co/go/tools/cmd/staticcheck@latest`)",
+      },
+      {
         bin = "rg",
         desc = "Telescope's live_grep and grep_string pickers",
       },

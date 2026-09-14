@@ -7,6 +7,11 @@ vim.keymap.set("n", "<leader>x", ":bp<bar>sp<bar>bn<bar>bd!<CR>", { desc = "Buff
 vim.keymap.set("n", "<leader>t", ":enew<CR>", { desc = "new buffer" })
 vim.keymap.set("n", "<leader>l", ":normal! ggVG=<C-O><CR>", { desc = "Format file" })
 vim.keymap.set("n", "<leader>w", ":cclose<CR>", { desc = "Close quickfix" })
+
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Window left" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Window down" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Window up" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Window right" })
 vim.keymap.set("n", "<leader>/", "gcc", {
   remap = true,
   silent = true,

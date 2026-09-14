@@ -10,6 +10,8 @@ return {
   opts = {
     keymap = {
       preset = "enter",
+      ["<CR>"] = { "fallback" },
+      ["<C-j>"] = { "accept", "fallback" },
     },
 
     appearance = {
