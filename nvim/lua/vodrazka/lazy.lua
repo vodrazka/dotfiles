@@ -12,10 +12,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  spec = "vodrazka.plugins",
+  spec = {
+    { import = "vodrazka.plugins" },
+    { import = "rust.plugins" },
+  },
+
   performance = {
     rtp = {
-      disabled_plugins = { "tohtml", "gzip", "zipPlugin", "netrwPlugin", "tarPlugin" },
+      disabled_plugins = {
+        "tohtml",
+        "gzip",
+        "zipPlugin",
+        "netrwPlugin",
+        "tarPlugin",
+      },
     },
   },
 })
+

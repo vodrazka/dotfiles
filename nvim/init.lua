@@ -1,1 +1,2 @@
 require("vodrazka")
+require("rust")
