@@ -13,8 +13,11 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
+    { import = "vodrazka.check-requirements" }, -- Warns about missing system binaries on startup
     { import = "vodrazka.plugins" },
-    { import = "vodrazka.rust" }, -- Rust toolchain (rust-analyzer, dap, crates); comment out to disable
+    { import = "vodrazka.dev" }, -- Shared dev tooling (mason, dap-ui, debug keymaps) for Rust and Go
+    { import = "vodrazka.rust" }, -- Rust toolchain (rust-analyzer, crates); comment out to disable
+    { import = "vodrazka.go" }, -- Go toolchain (gopls, dap); comment out to disable
   },
 
   performance = {

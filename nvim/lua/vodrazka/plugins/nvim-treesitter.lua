@@ -8,7 +8,8 @@ return {
 
     local parsers = {
       "lua", "vim", "vimdoc", "query",
-      "rust", "toml", "go",
+      "rust", "toml",
+      "go", "gomod", "gosum", "gowork",
       "bash", "json", "yaml", "markdown", "markdown_inline",
     }
     require("nvim-treesitter").install(parsers)

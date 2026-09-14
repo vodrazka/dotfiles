@@ -107,35 +107,12 @@ return {
           end, "Rust run target")
 
           map("<leader>rr", function()
-            if not vim.env.ZELLIJ then
-              vim.notify(
-                "Not running inside Zellij. Start Neovim from a Zellij pane.",
-                vim.log.levels.WARN
-              )
-              return
-            end
-
             local root = vim.fs.root(bufnr, { "Cargo.toml" }) or vim.fn.getcwd()
 
-            vim.system({
-              "zellij",
-              "run",
-              "--floating",
-              "--name",
-              "cargo run",
-              "--cwd",
-              root,
-              "--width",
-              "85%",
-              "--height",
-              "70%",
-              "--",
-              "cargo",
-              "run",
-            }, {
-              detach = true,
-            })
-          end, "Cargo run in Zellij float")
+            vim.cmd("botright split")
+            vim.cmd("lcd " .. vim.fn.fnameescape(root))
+            vim.cmd("terminal cargo run")
+          end, "Cargo run")
 
           map("<leader>rt", function()
             vim.cmd.RustLsp("testables")
@@ -150,44 +127,16 @@ return {
           end, "Rust expand macro")
 
           map("<leader>re", function()
-            vim.cmd.RustLsp("explainError")
-          end, "Rust explain error")
-
-          map("<leader>rE", function()
             vim.cmd.RustLsp("renderDiagnostic")
           end, "Rust render diagnostic")
+
+          map("<leader>rE", function()
+            vim.cmd.RustLsp("explainError")
+          end, "Rust explain error")
 
           map("K", function()
             vim.cmd.RustLsp({ "hover", "actions" })
           end, "Rust hover actions")
-
-          map("<leader>db", function()
-            require("dap").toggle_breakpoint()
-          end, "Debug toggle breakpoint")
-
-          map("<leader>dB", function()
-            require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-          end, "Debug conditional breakpoint")
-
-          map("<leader>dc", function()
-            require("dap").continue()
-          end, "Debug continue")
-
-          map("<leader>do", function()
-            require("dap").step_over()
-          end, "Debug step over")
-
-          map("<leader>di", function()
-            require("dap").step_into()
-          end, "Debug step into")
-
-          map("<leader>dO", function()
-            require("dap").step_out()
-          end, "Debug step out")
-
-          map("<leader>dx", function()
-            require("dap").terminate()
-          end, "Debug stop")
         end,
       },
 
