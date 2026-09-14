@@ -4,7 +4,10 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, { command = "set formatoptions-=o
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, { command = "set formatoptions-=r" }) --do not add comments from normal mode (o,O) - bug https://github.com/nvim-lualine/lualine.nvim/issues/733
 -- copy instead of rename on write, so file watchers (webpack, cargo-watch, etc.) keep the same inode
 vim.opt.backupcopy = "yes"
--- intendation
+-- keymap timeout (used by which-key)
+vim.o.timeout = true
+vim.o.timeoutlen = 300
+-- indentation
 opt.completeopt:remove "preview"
 opt.wrap = false
 opt.expandtab = true
