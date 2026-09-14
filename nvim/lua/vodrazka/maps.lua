@@ -18,5 +18,3 @@ vim.keymap.set("v", "<leader>/", "gc", {
   silent = true,
   desc = "Toggle selected lines comment",
 })
-
-vim.cmd.colorscheme "koehler"

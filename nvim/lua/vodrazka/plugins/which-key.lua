@@ -6,9 +6,11 @@ return {
     vim.o.timeoutlen = 300
     require("which-key").add({
       {"<leader>c", group="Code"},
+      {"<leader>d", group="Debug"},
       {"<leader>f", group="Find"},
       {"<leader>g", group="Git"},
       {"<leader>h", group="Harpoon"},
+      {"<leader>r", group="Rust"},
     })
   end,
   opts = {}

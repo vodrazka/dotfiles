@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     { import = "vodrazka.plugins" },
-    { import = "rust.plugins" },
+    { import = "vodrazka.rust" }, -- Rust toolchain (rust-analyzer, dap, crates); comment out to disable
   },
 
   performance = {

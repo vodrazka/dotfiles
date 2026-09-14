@@ -1,2 +1,1 @@
 require("vodrazka")
-require("rust")
