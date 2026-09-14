@@ -122,6 +122,10 @@ return {
             vim.cmd.RustLsp("debuggables")
           end, "Rust debug target")
 
+          map("<leader>rl", function()
+            require("vodrazka.util.dap_terminal").open()
+          end, "Rust debug logs")
+
           map("<leader>rm", function()
             vim.cmd.RustLsp({ "expandMacro", "vertical" })
           end, "Rust expand macro")

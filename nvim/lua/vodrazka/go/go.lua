@@ -107,6 +107,11 @@ return {
       lsp_keymaps = false,
 
       dap_debug = true,
+      -- go.nvim's own bare-key hijack (r/c/n/s/o/...) is replaced by the
+      -- adapter-agnostic version in dev/dap.lua, which also covers Rust
+      -- (rustaceanvim/codelldb) and doesn't depend on :GoDebug having run
+      -- first. Leave this off so the two don't both rebind the same keys.
+      dap_debug_keymap = false,
 
       lsp_on_attach = function(_, bufnr)
         local function map(keys, rhs, desc)
@@ -140,6 +145,10 @@ return {
         map("<leader>rd", function()
           vim.cmd("GoDebug")
         end, "Go debug target")
+
+        map("<leader>rl", function()
+          require("dap").repl.open()
+        end, "Go debug logs")
 
         map("<leader>re", function()
           vim.diagnostic.open_float()
