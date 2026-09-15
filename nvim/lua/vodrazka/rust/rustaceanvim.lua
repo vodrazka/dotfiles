@@ -112,6 +112,7 @@ return {
             vim.cmd("botright split")
             vim.cmd("lcd " .. vim.fn.fnameescape(root))
             vim.cmd("terminal cargo run")
+            require("vodrazka.util.console").set_buf(vim.api.nvim_get_current_buf())
           end, "Cargo run")
 
           map("<leader>rt", function()
@@ -123,8 +124,8 @@ return {
           end, "Rust debug target")
 
           map("<leader>rl", function()
-            require("vodrazka.util.dap_terminal").open()
-          end, "Rust debug logs")
+            require("vodrazka.util.console").toggle()
+          end, "Rust toggle run/debug console")
 
           map("<leader>rm", function()
             vim.cmd.RustLsp({ "expandMacro", "vertical" })

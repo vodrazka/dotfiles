@@ -136,6 +136,7 @@ return {
           vim.cmd("botright split")
           vim.cmd("lcd " .. vim.fn.fnameescape(root))
           vim.cmd("terminal go run .")
+          require("vodrazka.util.console").set_buf(vim.api.nvim_get_current_buf())
         end, "Go run")
 
         map("<leader>rt", function()
@@ -147,8 +148,8 @@ return {
         end, "Go debug target")
 
         map("<leader>rl", function()
-          require("dap").repl.open()
-        end, "Go debug logs")
+          require("vodrazka.util.console").toggle()
+        end, "Go toggle run/debug console")
 
         map("<leader>re", function()
           vim.diagnostic.open_float()

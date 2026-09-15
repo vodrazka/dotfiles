@@ -14,8 +14,18 @@ return {
 
     -- Captures the bufnr of any integrated terminal nvim-dap opens for a
     -- runInTerminal request (codelldb/Rust), so it can be reopened later via
-    -- <leader>rl (see util/dap_terminal.lua, rustaceanvim.lua, go.lua).
-    dap.defaults.fallback.terminal_win_cmd = require("vodrazka.util.dap_terminal").terminal_win_cmd
+    -- <leader>rl (see util/console.lua, rustaceanvim.lua, go.lua).
+    dap.defaults.fallback.terminal_win_cmd = require("vodrazka.util.console").terminal_win_cmd
+
+    -- delve (Go) has no runInTerminal terminal to hook into -- it streams
+    -- output through DAP Output events into dap's REPL instead -- so mark
+    -- Go sessions as repl-backed explicitly once they actually start.
+    dap.listeners.after.event_initialized["console_tracker"] = function()
+      local session = dap.session()
+      if session and session.config and session.config.type == "go" then
+        require("vodrazka.util.console").set_repl()
+      end
+    end
 
     -- Plain normal-mode keys (u, n, s, o, c, b, ...) are hijacked for the
     -- duration of any dap session -- see hijack_bind/hijack_unmap below,
@@ -288,9 +298,8 @@ return {
       dap.terminate()
     end, "Debug stop")
 
-    -- Per-language <leader>rl (Go: dap.repl.open() in go.lua, Rust:
-    -- dap_terminal.open() in rustaceanvim.lua) reopens that session's
-    -- console output after dapui has closed -- see dap_terminal.lua for why
-    -- the two adapters need different reopen logic.
+    -- <leader>rl (go.lua, rustaceanvim.lua) toggles whichever run/debug
+    -- output -- normal run or debug session -- was produced most recently,
+    -- for either language, via util/console.lua.
   end,
 }
